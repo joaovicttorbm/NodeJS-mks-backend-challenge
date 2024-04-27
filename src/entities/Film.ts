@@ -1,30 +1,25 @@
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./User";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
-
-
-@Entity('films')
+@Entity("films")
 export class Film {
-    @PrimaryGeneratedColumn()
-    id: number;
-  
-    @Column({type: 'text', nullable: false})
-    @IsNotEmpty({ message: 'O título é obrigatório' })
-    @MaxLength(100, { message: 'O título deve ter no máximo 100 caracteres' })
-    title: string;
-  
-    @Column({type: 'text', nullable: false})
-    @IsNotEmpty({ message: 'A descrição é obrigatória' })
-    description: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => User, user => user.films)
-    @JoinColumn({name: 'user_id'})
-    user: User;
+  @Column({ type: "text", nullable: false, unique: true })
+  title: string;
 
-    constructor(title: string, description: string) {
-        this.title = title;
-        this.description = description;
-    }
+  @Column({ type: "text", nullable: false })
+  description: string;
+
+  constructor(title: string, description: string) {
+    this.title = title;
+    this.description = description;
+  }
 }
-

@@ -2,14 +2,14 @@
 import express from 'express'
 import { AppDataSource } from './data-source'
 // import { errorMiddleware } from './middlewares/error'
-// import routes from './routes'
+import routes from './routes'
 
 AppDataSource.initialize().then(() => {
 	const app = express()
 
 	app.use(express.json())
 
-	app.get('/', (req, res) => {return res.json("oK")})
+	app.use(routes)
 
-	return app.listen(process.env.PORT)
+	return app.listen(process.env.PORT, ()=> {console.log('listening on port', process.env.PORT)})
 })
