@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Film",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "director": {
+        "type": "string"
+      },
+      "release_year": {
+        "type": "integer"
+      },
+      "genre": {
+        "type": "string"
+      }
+    },
+    "required": ["title", "director", "release_year", "genre"]
+  }
+  
